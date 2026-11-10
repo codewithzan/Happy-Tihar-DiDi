@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#3a0a12" />
+    <meta name="description" content="A personal Tihar surprise for the sister I found in Japan." />
+    <title>A Little Tihar Surprise for Didi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600&family=Kalam:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+
+  <body class="is-locked">
+    <!-- Atmosphere -->
+    <div class="bokeh" aria-hidden="true" data-decor="bokeh"></div>
+    <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+    <canvas id="ambient" aria-hidden="true"></canvas>
+
+    <!-- Music (hidden automatically if the audio file is missing) -->
+    <div class="music" id="music" role="group" aria-label="Background music" hidden>
+      <button class="music__btn" id="music-play" type="button" aria-pressed="false" aria-label="Play music">
+        <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+        <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+      </button>
+      <button class="music__btn" id="music-mute" type="button" aria-pressed="false" aria-label="Mute music">
+        <svg class="i-sound" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9.5v5h3.5l4.5 4v-13l-4.5 4z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11"/></svg>
+        <svg class="i-muted" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9.5v5h3.5l4.5 4v-13l-4.5 4z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+      </button>
+      <label class="sr-only" for="music-volume">Music volume</label>
+      <input class="music__range" id="music-volume" type="range" min="0" max="100" step="1" value="45" />
+    </div>
+
+    <!-- SCREEN 1 · Welcome -->
+    <section id="welcome" class="welcome" aria-labelledby="welcome-title">
+      <div class="welcome__garland" data-decor="garland" aria-hidden="true"></div>
+
+      <div class="welcome__inner">
+        <h1 id="welcome-title" class="welcome__title" data-text="welcome.title"></h1>
+        <p class="welcome__sub" data-text="welcome.subtitle"></p>
+
+        <div class="stage" aria-hidden="true">
+          <span class="stage__diya stage__diya--l" data-decor="diya"></span>
+          <div class="gift" id="gift">
+            <div class="gift__glow"></div>
+            <div class="gift__beam"></div>
+            <div class="gift__body"><span class="gift__ribbon"></span></div>
+            <div class="gift__lid">
+              <span class="gift__ribbon"></span>
+              <div class="gift__bow">
+                <span class="gift__loop gift__loop--l"></span>
+                <span class="gift__loop gift__loop--r"></span>
+                <span class="gift__tail gift__tail--l"></span>
+                <span class="gift__tail gift__tail--r"></span>
+                <span class="gift__knot"></span>
+              </div>
+            </div>
+          </div>
+          <span class="stage__diya stage__diya--r" data-decor="diya"></span>
+        </div>
+
+        <button class="btn" id="open-gift" type="button"><span data-text="welcome.button"></span></button>
+      </div>
+
+      <div class="welcome__diyas diya-row" aria-hidden="true" data-decor="diya-row"></div>
+      <div class="flash" aria-hidden="true"></div>
+    </section>
+
+    <!-- The main journey (revealed after the gift opens) -->
+    <main id="experience" hidden inert>
+      <!-- SCREEN 2 · Celebration -->
+      <section id="celebration" class="section celebrate" data-ambient="celebrate" aria-labelledby="celebrate-title">
+        <div class="garland" data-decor="garland" aria-hidden="true"></div>
+        <div class="strand strand--l" data-decor="strand" data-len="320" aria-hidden="true"></div>
+        <div class="strand strand--r" data-decor="strand" data-len="220" aria-hidden="true"></div>
+        <div class="celebrate__rangoli" data-decor="rangoli" data-parallax="0.08" aria-hidden="true"></div>
+
+        <div class="celebrate__content">
+          <p class="eyebrow reveal" lang="ne" data-text="celebration.eyebrow"></p>
+          <h2 id="celebrate-title" class="display reveal" style="--d: 0.15s" tabindex="-1" data-text="celebration.title"></h2>
+          <div class="ornament reveal" style="--d: 0.3s" data-decor="ornament" aria-hidden="true"></div>
+          <p class="lead reveal" style="--d: 0.45s" data-text="celebration.message"></p>
+          <button class="cue reveal" style="--d: 0.7s" type="button" data-scroll-to="#memories">
+            <span data-text="celebration.cue"></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+        <div class="celebrate__diyas diya-row" aria-hidden="true" data-decor="diya-row"></div>
+      </section>
+
+      <!-- SCREEN 3 · Memories -->
+      <section id="memories" class="section memories" data-ambient="soft" aria-labelledby="memories-title">
+        <header class="section__head reveal">
+          <p class="eyebrow" data-text="memories.eyebrow"></p>
+          <h2 id="memories-title" class="display display--md" data-text="memories.title"></h2>
+          <div class="ornament" data-decor="ornament" aria-hidden="true"></div>
+          <p class="lead lead--sm" data-text="memories.intro"></p>
+          <div class="memory-timeline" aria-label="Our story in three moments">
+            <span><b>01</b> We met</span>
+            <i aria-hidden="true"></i>
+            <span><b>02</b> Make a memories</span>
+            <i aria-hidden="true"></i>
+            <span><b>03</b> More memories ahead</span>
+          </div>
+        </header>
+
+        <ul class="gallery" id="gallery"></ul>
+
+        <button class="cue reveal" type="button" data-scroll-to="#letter">
+          <span>A letter for you</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </section>
+
+      <!-- SCREEN 4 · Letter -->
+      <section id="letter" class="section letter" data-ambient="soft" aria-labelledby="letter-title">
+        <header class="section__head reveal">
+          <h2 id="letter-title" class="display display--md" data-text="letter.heading"></h2>
+          <div class="ornament" data-decor="ornament" aria-hidden="true"></div>
+        </header>
+
+        <div class="letter-stage reveal" style="--d: 0.15s">
+          <div class="envelope-wrap" id="envelope-wrap">
+            <button class="envelope" id="envelope" type="button" aria-expanded="false">
+              <span class="envelope__back"></span>
+              <span class="envelope__paper"><i></i><i></i><i></i><i></i></span>
+              <svg class="envelope__pocket" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0 0L150 108L0 200Z" fill="#e3c283" stroke="#c9a35d" stroke-width=".8"/>
+                <path d="M300 0L150 108L300 200Z" fill="#e3c283" stroke="#c9a35d" stroke-width=".8"/>
+                <path d="M0 200L150 96L300 200Z" fill="#efd7a2" stroke="#c9a35d" stroke-width=".8"/>
+              </svg>
+              <svg class="envelope__flap" viewBox="0 0 300 110" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0 0H300L150 108Z" fill="#dab36a" stroke="#b98f45" stroke-width=".8"/>
+              </svg>
+              <span class="envelope__seal" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 21s-7.5-4.6-9.6-9.3C.9 8.2 3 4.5 6.6 4.5c2 0 3.6 1.1 5.4 3.2 1.8-2.1 3.4-3.2 5.4-3.2 3.6 0 5.7 3.7 4.2 7.2C19.5 16.4 12 21 12 21z"/></svg>
+              </span>
+            </button>
+            <p class="envelope-hint" id="envelope-hint" data-text="letter.hint"></p>
+          </div>
+
+          <article class="letter-paper" id="letter-paper" hidden tabindex="-1" aria-label="A letter from your brother"></article>
+        </div>
+
+        <button class="cue reveal" type="button" data-scroll-to="#bhai-tika">
+          <span data-text="letter.cue"></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </section>
+
+      <!-- SCREEN 5 · Bhai Tika -->
+      <section id="bhai-tika" class="section tika" data-ambient="celebrate" aria-labelledby="tika-title">
+        <header class="section__head reveal">
+          <p class="eyebrow" lang="ne" data-text="bhaiTika.eyebrow"></p>
+          <h2 id="tika-title" class="display display--md" data-text="bhaiTika.title"></h2>
+        </header>
+
+        <article class="blessing reveal" style="--d: 0.1s">
+          <span class="blessing__corner blessing__corner--tl" data-decor="corner" aria-hidden="true"></span>
+          <span class="blessing__corner blessing__corner--tr" data-decor="corner" aria-hidden="true"></span>
+          <span class="blessing__corner blessing__corner--bl" data-decor="corner" aria-hidden="true"></span>
+          <span class="blessing__corner blessing__corner--br" data-decor="corner" aria-hidden="true"></span>
+          <div class="blessing__garland" data-decor="garland-short" aria-hidden="true"></div>
+
+          <div
+            class="blessing__thali"
+            data-decor="thali"
+            role="img"
+            aria-label="A Tihar tika plate with seven colours of tika, walnuts, marigold flowers and a glowing diya"
+          ></div>
+          <div class="blessing__tika" data-decor="tika-band" aria-hidden="true"></div>
+
+          <div class="blessing__text" id="blessing-text"></div>
+        </article>
+
+        <div class="wishes reveal">
+          <p class="wishes__intro" data-text="bhaiTika.wishesIntro"></p>
+          <ul class="wishes__row" id="wishes"></ul>
+          <button class="btn btn--ghost" id="light-diya" type="button"><span data-text="bhaiTika.lightButton"></span></button>
+          <p class="wishes__done" id="wishes-done" aria-live="polite"></p>
+        </div>
+        <div class="closing-note reveal">
+          <span class="closing-note__ornament" aria-hidden="true">✦</span>
+          <p>Until we get to celebrate together again, please remember how special you are to me.</p>
+          <span class="closing-note__sign">With love, your brother ❤️</span>
+        </div>
+</section>
+</main>
+
+    <!-- Photo viewer -->
+    <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+      <button class="lightbox__close" id="lb-close" type="button" aria-label="Close photo viewer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <figure class="lightbox__frame">
+        <div class="lightbox__media" id="lb-media"></div>
+        <figcaption>
+          <span class="lightbox__caption" id="lb-caption"></span>
+          <span class="lightbox__meta"><span id="lb-tag"></span> · <span id="lb-count"></span></span>
+        </figcaption>
+      </figure>
+      <div class="lightbox__nav">
+        <button class="lightbox__btn" id="lb-prev" type="button" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="lightbox__btn" id="lb-next" type="button" aria-label="Next photo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </dialog>
+
+    <script src="js/app.js" defer></script>
+  </body>
+</html>
